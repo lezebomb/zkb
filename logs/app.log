@@ -12,3 +12,10 @@
 2026-06-07 21:03:34 INFO [contest_agent] request_id=eval-detect-1 task_type=detect difficulty=L2 image=path image_size=320x240 infer_T_max_ms=0 elapsed_ms=0 ok=True message='' result=targets=2 labels=['水杯', '自行车']
 2026-06-07 21:03:34 INFO [contest_agent] ocr_fallback raw_text='DEMO-6C9E2974' normalized_text='DEMO-6C9E2974'
 2026-06-07 21:03:34 INFO [contest_agent] request_id=eval-ocr-1 task_type=ocr difficulty= image=path image_size=320x240 infer_T_max_ms=0 elapsed_ms=0 ok=True message='' result=text=DEMO-6C9E2974
+2026-06-07 22:23:53 INFO [contest_agent] request_id=eval-detect-1 task_type=detect difficulty=L2 image=path image_size=320x240 infer_T_max_ms=0 elapsed_ms=8 ok=True message='' result=targets=2 labels=['水杯', '自行车']
+2026-06-07 22:23:53 WARNING [contest_agent] Detector model not found at C:\Users\24981\Desktop\zkb\models\does-not-exist.pt and ALLOW_MODEL_AUTO_DOWNLOAD=false; falling back.
+2026-06-07 22:23:53 INFO [contest_agent] request_id=eval-detect-3 task_type=detect difficulty= image=path image_size=320x240 infer_T_max_ms=0 elapsed_ms=1 ok=True message='' result=targets=2 labels=['水杯', '自行车']
+2026-06-07 22:23:53 INFO [contest_agent] ocr_fallback raw_text='DEMO-6C9E2974' normalized_text='DEMO-6C9E2974'
+2026-06-07 22:23:53 INFO [contest_agent] request_id=eval-ocr-1 task_type=ocr difficulty= image=path image_size=320x240 infer_T_max_ms=0 elapsed_ms=0 ok=True message='' result=text=DEMO-6C9E2974
+2026-06-07 22:23:53 INFO [contest_agent] ocr_fallback raw_text='DEMO-6C9E2974' normalized_text='DEMO-6C9E2974'
+2026-06-07 22:23:53 INFO [contest_agent] request_id=eval-ocr-secret task_type=ocr difficulty= image=path image_size=320x240 infer_T_max_ms=0 elapsed_ms=0 ok=True message='' result=text=DEMO-6C9E2974

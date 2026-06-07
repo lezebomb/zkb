@@ -3,6 +3,7 @@ from __future__ import annotations
 import logging
 from typing import Any
 
+from contest_agent.config import Settings
 from contest_agent.inference.base import ClassifierBackend, DetectorBackend, OCRBackend
 from contest_agent.postprocess.labels import get_legal_class_names
 from contest_agent.postprocess.ocr_text import normalize_text_for_output
@@ -59,11 +60,12 @@ class FallbackDetectorBackend(DetectorBackend):
 
 
 class FallbackOCRBackend(OCRBackend):
-    def __init__(self, logger: logging.Logger | None = None) -> None:
+    def __init__(self, settings: Settings, logger: logging.Logger | None = None) -> None:
+        self.settings = settings
         self.logger = logger or logging.getLogger(__name__)
 
     def predict(self, image: Any, meta: dict[str, Any]) -> dict[str, Any]:
-        expected = _extract_expected_text(meta)
+        expected = _extract_expected_text(meta) if self.settings.mock_allow_expected_text else ""
         raw_text = expected or f"DEMO-{stable_token(image.sha256, 8)}"
         normalized = normalize_text_for_output(raw_text, meta.get("normalize_rules"))
         self.logger.info("ocr_fallback raw_text=%r normalized_text=%r", raw_text, normalized)

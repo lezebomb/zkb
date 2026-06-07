@@ -50,6 +50,7 @@ DETECT_LABEL_ALIASES = {
     "bicycle": "自行车",
     "bike": "自行车",
     "cell phone": "手机",
+    "cellphone": "手机",
     "mobile phone": "手机",
     "phone": "手机",
     "cup": "水杯",

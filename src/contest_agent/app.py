@@ -100,7 +100,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             "supported_tasks": list(app_settings.supported_tasks),
             "service": app_settings.app_name,
             "version": app_settings.app_version,
-            "bridge_mode": "local",
+            "bridge_mode": "mock-local",
         }
 
     @app.options("/{path:path}")

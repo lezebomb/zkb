@@ -48,6 +48,8 @@ class Settings:
     app_port: int
     app_version: str
     offline_mode: bool
+    allow_model_auto_download: bool
+    mock_allow_expected_text: bool
     model_classify_path: Path
     model_detect_path: Path
     model_ocr_path: Path
@@ -55,6 +57,7 @@ class Settings:
     detect_backend: str
     ocr_backend: str
     detect_score_threshold: float
+    detect_max_targets: int
     detect_empty_fallback: bool
     image_download_timeout_seconds: int
     max_image_size_mb: int
@@ -72,13 +75,16 @@ def get_settings() -> Settings:
         app_port=_get_int("APP_PORT", 8080),
         app_version=os.getenv("APP_VERSION", __version__),
         offline_mode=_get_bool("OFFLINE_MODE", True),
+        allow_model_auto_download=_get_bool("ALLOW_MODEL_AUTO_DOWNLOAD", False),
+        mock_allow_expected_text=_get_bool("MOCK_ALLOW_EXPECTED_TEXT", False),
         model_classify_path=ROOT_DIR / os.getenv("MODEL_CLASSIFY_PATH", "models/classifier.onnx"),
-        model_detect_path=ROOT_DIR / os.getenv("MODEL_DETECT_PATH", "models/detector.onnx"),
+        model_detect_path=ROOT_DIR / os.getenv("MODEL_DETECT_PATH", "models/yolo11n.pt"),
         model_ocr_path=ROOT_DIR / os.getenv("MODEL_OCR_PATH", "models/ocr"),
         classify_backend=os.getenv("CLASSIFY_BACKEND", "fallback").strip().lower(),
         detect_backend=os.getenv("DETECT_BACKEND", "fallback").strip().lower(),
         ocr_backend=os.getenv("OCR_BACKEND", "fallback").strip().lower(),
         detect_score_threshold=_get_float("DETECT_SCORE_THRESHOLD", 0.25),
+        detect_max_targets=_get_int("DETECT_MAX_TARGETS", 50),
         detect_empty_fallback=_get_bool("DETECT_EMPTY_FALLBACK", False),
         image_download_timeout_seconds=_get_int("IMAGE_DOWNLOAD_TIMEOUT_SECONDS", 5),
         max_image_size_mb=_get_int("MAX_IMAGE_SIZE_MB", 20),

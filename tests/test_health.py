@@ -7,6 +7,7 @@ def test_health_returns_expected_contract(client) -> None:
     payload = response.json()
     assert payload["status"] == "ok"
     assert payload["supported_tasks"] == ["classify", "ocr", "detect"]
+    assert payload["bridge_mode"] == "mock-local"
 
 
 def test_options_preflight_is_available(client) -> None:

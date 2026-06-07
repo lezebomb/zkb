@@ -10,10 +10,10 @@ from contest_agent.inference.fallback import FallbackOCRBackend
 
 
 class LocalOCRBackend(OCRBackend):
-    def __init__(self, model_path: Path, logger: logging.Logger | None = None) -> None:
+    def __init__(self, model_path: Path, settings: Settings, logger: logging.Logger | None = None) -> None:
         self.model_path = model_path
         self.logger = logger or logging.getLogger(__name__)
-        self.fallback = FallbackOCRBackend(self.logger)
+        self.fallback = FallbackOCRBackend(settings, self.logger)
         self.available = model_path.exists()
         if not self.available:
             self.logger.warning("OCR model not found at %s, falling back.", model_path)
@@ -27,5 +27,5 @@ class LocalOCRBackend(OCRBackend):
 
 def build_ocr_backend(settings: Settings, logger: logging.Logger | None = None) -> OCRBackend:
     if settings.ocr_backend == "local":
-        return LocalOCRBackend(settings.model_ocr_path, logger)
-    return FallbackOCRBackend(logger)
+        return LocalOCRBackend(settings.model_ocr_path, settings, logger)
+    return FallbackOCRBackend(settings, logger)

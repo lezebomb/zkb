@@ -31,7 +31,10 @@ def ensure_sample_image() -> Path:
 @pytest.fixture()
 def client() -> TestClient:
     from contest_agent.app import create_app
+    from contest_agent.config import get_settings
 
+    get_settings.cache_clear()
     test_app = create_app()
     with TestClient(test_app) as current_client:
         yield current_client
+    get_settings.cache_clear()
