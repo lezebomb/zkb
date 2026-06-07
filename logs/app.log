@@ -1,0 +1,14 @@
+2026-06-07 20:58:08 INFO [contest_agent] request_id=eval-classify-1 task_type=classify difficulty=L1 image=path image_size=320x240 infer_T_max_ms=0 elapsed_ms=9 ok=True message='' result=label=街道
+2026-06-07 20:58:08 INFO [contest_agent] request_id=eval-classify-2 task_type=classify difficulty= image=path image_size=320x240 infer_T_max_ms=0 elapsed_ms=1 ok=True message='' result=label=街道
+2026-06-07 20:58:08 INFO [contest_agent] request_id=eval-detect-1 task_type=detect difficulty=L2 image=path image_size=320x240 infer_T_max_ms=0 elapsed_ms=1 ok=True message='' result=targets=2 labels=['水杯', '自行车']
+2026-06-07 20:58:08 INFO [contest_agent] ocr_fallback raw_text='DEMO-6C9E2974' normalized_text='DEMO-6C9E2974'
+2026-06-07 20:58:08 INFO [contest_agent] request_id=eval-ocr-1 task_type=ocr difficulty= image=path image_size=320x240 infer_T_max_ms=0 elapsed_ms=1 ok=True message='' result=text=DEMO-6C9E2974
+2026-06-07 21:02:41 INFO [contest_agent] request_id=smoke-classify-1 task_type=classify difficulty=L1 image=path image_size=320x240 infer_T_max_ms=0 elapsed_ms=14 ok=True message='' result=label=卧室
+2026-06-07 21:02:41 INFO [contest_agent] request_id=smoke-detect-1 task_type=detect difficulty=L1 image=path image_size=320x240 infer_T_max_ms=0 elapsed_ms=2 ok=True message='' result=targets=2 labels=['手机', '沙发']
+2026-06-07 21:02:41 INFO [contest_agent] ocr_fallback raw_text='DEMO-98CE24D0' normalized_text='DEMO-98CE24D0'
+2026-06-07 21:02:41 INFO [contest_agent] request_id=smoke-ocr-1 task_type=ocr difficulty=L1 image=path image_size=320x240 infer_T_max_ms=0 elapsed_ms=1 ok=True message='' result=text=DEMO-98CE24D0
+2026-06-07 21:03:34 INFO [contest_agent] request_id=eval-classify-1 task_type=classify difficulty=L1 image=path image_size=320x240 infer_T_max_ms=0 elapsed_ms=7 ok=True message='' result=label=街道
+2026-06-07 21:03:34 INFO [contest_agent] request_id=eval-classify-2 task_type=classify difficulty= image=path image_size=320x240 infer_T_max_ms=0 elapsed_ms=0 ok=True message='' result=label=街道
+2026-06-07 21:03:34 INFO [contest_agent] request_id=eval-detect-1 task_type=detect difficulty=L2 image=path image_size=320x240 infer_T_max_ms=0 elapsed_ms=0 ok=True message='' result=targets=2 labels=['水杯', '自行车']
+2026-06-07 21:03:34 INFO [contest_agent] ocr_fallback raw_text='DEMO-6C9E2974' normalized_text='DEMO-6C9E2974'
+2026-06-07 21:03:34 INFO [contest_agent] request_id=eval-ocr-1 task_type=ocr difficulty= image=path image_size=320x240 infer_T_max_ms=0 elapsed_ms=0 ok=True message='' result=text=DEMO-6C9E2974
