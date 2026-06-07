@@ -66,7 +66,15 @@ class UltralyticsDetectorBackend(DetectorBackend):
 
         legal_labels = get_legal_class_names(meta, "detect")
         try:
-            results = model.predict(image.np_image, conf=self.settings.detect_score_threshold, verbose=False)
+            results = model.predict(
+                image.np_image,
+                conf=self.settings.detect_score_threshold,
+                imgsz=self.settings.detect_imgsz,
+                device=self.settings.detect_device,
+                max_det=self.settings.detect_max_targets,
+                save=False,
+                verbose=False,
+            )
         except Exception as exc:
             self.logger.warning("Ultralytics detect inference failed (%s); falling back.", exc)
             return self.fallback.predict(image, meta)

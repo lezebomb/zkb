@@ -59,6 +59,14 @@ class Settings:
     detect_score_threshold: float
     detect_max_targets: int
     detect_empty_fallback: bool
+    detect_device: str
+    detect_imgsz: int
+    ocr_use_angle_cls: bool
+    ocr_lang: str
+    ocr_det_model_dir: Path
+    ocr_rec_model_dir: Path
+    ocr_cls_model_dir: Path
+    ocr_max_text_length: int
     image_download_timeout_seconds: int
     max_image_size_mb: int
     log_level: str
@@ -86,6 +94,14 @@ def get_settings() -> Settings:
         detect_score_threshold=_get_float("DETECT_SCORE_THRESHOLD", 0.25),
         detect_max_targets=_get_int("DETECT_MAX_TARGETS", 50),
         detect_empty_fallback=_get_bool("DETECT_EMPTY_FALLBACK", False),
+        detect_device=os.getenv("DETECT_DEVICE", "cpu").strip(),
+        detect_imgsz=_get_int("DETECT_IMGSZ", 640),
+        ocr_use_angle_cls=_get_bool("OCR_USE_ANGLE_CLS", True),
+        ocr_lang=os.getenv("OCR_LANG", "ch").strip(),
+        ocr_det_model_dir=ROOT_DIR / os.getenv("OCR_DET_MODEL_DIR", "models/paddleocr/det"),
+        ocr_rec_model_dir=ROOT_DIR / os.getenv("OCR_REC_MODEL_DIR", "models/paddleocr/rec"),
+        ocr_cls_model_dir=ROOT_DIR / os.getenv("OCR_CLS_MODEL_DIR", "models/paddleocr/cls"),
+        ocr_max_text_length=_get_int("OCR_MAX_TEXT_LENGTH", 128),
         image_download_timeout_seconds=_get_int("IMAGE_DOWNLOAD_TIMEOUT_SECONDS", 5),
         max_image_size_mb=_get_int("MAX_IMAGE_SIZE_MB", 20),
         log_level=os.getenv("LOG_LEVEL", "INFO").strip().upper(),

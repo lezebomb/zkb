@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import logging
 import time
+from pathlib import Path
 from typing import Any
 
 from fastapi import FastAPI, Request
@@ -26,6 +27,55 @@ from contest_agent.validators import (
     validate_detect_result,
     validate_ocr_result,
 )
+
+
+def _display_path(settings: Settings, path: Any) -> str:
+    try:
+        return str(Path(path).resolve().relative_to(settings.model_detect_path.parents[1]))
+    except Exception:
+        try:
+            return str(Path(path))
+        except Exception:
+            return str(path)
+
+
+def _ocr_model_dirs_exist(settings: Settings) -> bool:
+    required = [settings.ocr_det_model_dir, settings.ocr_rec_model_dir]
+    if settings.ocr_use_angle_cls:
+        required.append(settings.ocr_cls_model_dir)
+    return all(path.exists() for path in required)
+
+
+def _backend_status(settings: Settings) -> dict[str, Any]:
+    classify_effective = "fallback"
+    detect_effective = "fallback"
+    ocr_effective = "fallback"
+
+    if settings.detect_backend in {"local", "ultralytics"}:
+        detect_effective = "ultralytics_or_fallback"
+    if settings.ocr_backend in {"local", "paddleocr"}:
+        ocr_effective = "paddleocr_or_fallback"
+
+    return {
+        "classify": {
+            "configured": settings.classify_backend,
+            "effective": classify_effective,
+            "model_path": _display_path(settings, settings.model_classify_path),
+            "model_exists": settings.model_classify_path.exists(),
+        },
+        "detect": {
+            "configured": settings.detect_backend,
+            "effective": detect_effective,
+            "model_path": _display_path(settings, settings.model_detect_path),
+            "model_exists": settings.model_detect_path.exists(),
+        },
+        "ocr": {
+            "configured": settings.ocr_backend,
+            "effective": ocr_effective,
+            "model_path": _display_path(settings, settings.model_ocr_path),
+            "model_dirs_exist": _ocr_model_dirs_exist(settings),
+        },
+    }
 
 
 def _extract_request_envelope(raw_body: bytes) -> tuple[str, str]:
@@ -101,6 +151,16 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             "service": app_settings.app_name,
             "version": app_settings.app_version,
             "bridge_mode": "mock-local",
+        }
+
+    @app.get("/debug/status")
+    async def debug_status() -> dict[str, Any]:
+        return {
+            "service": app_settings.app_name,
+            "version": app_settings.app_version,
+            "offline_mode": app_settings.offline_mode,
+            "allow_model_auto_download": app_settings.allow_model_auto_download,
+            "backends": _backend_status(app_settings),
         }
 
     @app.options("/{path:path}")

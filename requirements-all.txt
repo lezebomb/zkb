@@ -1,0 +1,2 @@
+-r requirements-detect.txt
+-r requirements-ocr.txt

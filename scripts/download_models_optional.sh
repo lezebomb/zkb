@@ -14,8 +14,10 @@ from urllib import request
 
 downloads = [
     ("CLASSIFY_MODEL_URL", Path("models/classifier.onnx")),
-    ("DETECT_MODEL_URL", Path("models/detector.onnx")),
-    ("OCR_MODEL_URL", Path("models/ocr/model.bin")),
+    ("DETECT_MODEL_URL", Path("models/yolo11n.pt")),
+    ("OCR_DET_MODEL_URL", Path("models/paddleocr/det/model.bin")),
+    ("OCR_REC_MODEL_URL", Path("models/paddleocr/rec/model.bin")),
+    ("OCR_CLS_MODEL_URL", Path("models/paddleocr/cls/model.bin")),
 ]
 
 for env_name, target in downloads:

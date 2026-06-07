@@ -27,6 +27,19 @@ def _to_halfwidth(text: str) -> str:
     return unicodedata.normalize("NFKC", text)
 
 
+def merge_ocr_lines(lines: list[tuple[float, float, str]]) -> str:
+    if not lines:
+        return ""
+    ordered = sorted(lines, key=lambda item: (round(item[1] / 10.0), item[1], item[0]))
+    return " ".join(text for _, _, text in ordered if text).strip()
+
+
+def truncate_text(text: str, max_length: int) -> str:
+    if max_length <= 0:
+        return ""
+    return text[:max_length]
+
+
 def normalize_text_for_output(text: Any, normalize_rules: dict[str, Any] | None = None) -> str:
     rules = normalize_rules or {}
     value = _to_halfwidth("" if text is None else str(text))
