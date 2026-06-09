@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -12,6 +13,9 @@ if str(SRC) not in sys.path:
 
 from contest_agent.training.classify_data import CLASSIFY_LABELS, create_tiny_placeholder, imagefolder_has_images
 from contest_agent.training.common import env_bool
+
+
+os.environ.setdefault("KMP_DUPLICATE_LIB_OK", "TRUE")
 
 
 def main() -> int:
@@ -86,4 +90,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

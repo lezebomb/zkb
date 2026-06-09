@@ -1,0 +1,6 @@
+{
+  "rounds": [],
+  "best_accuracy": 0.0,
+  "best_model": null,
+  "stopped_reason": "dry-run"
+}

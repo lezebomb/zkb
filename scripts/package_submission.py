@@ -12,6 +12,7 @@ PACKAGE_TARGETS = [
     "requirements-detect.txt",
     "requirements-ocr.txt",
     "requirements-train.txt",
+    "requirements-data.txt",
     "requirements-all.txt",
     "configs",
     "src",

@@ -1,3 +1,4 @@
 -r requirements-detect.txt
 -r requirements-ocr.txt
 -r requirements-train.txt
+-r requirements-data.txt

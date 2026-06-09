@@ -1,0 +1,20 @@
+images/000001.png	95.9℃
+images/000002.png	62.9
+images/000003.png	阀位405A
+images/000004.png	电压0.56℃
+images/000005.png	16
+images/000006.png	109.6V
+images/000007.png	378
+images/000008.png	电流 71.2
+images/000009.png	0.04%
+images/000010.png	温度 89.4
+images/000011.png	0.56
+images/000012.png	58.6A
+images/000013.png	650A
+images/000014.png	压力0.58MPa
+images/000015.png	阀位81.3%
+images/000016.png	0.04℃
+images/000017.png	电压 0.04
+images/000018.png	80.2
+images/000019.png	电流38.2℃
+images/000020.png	0.16

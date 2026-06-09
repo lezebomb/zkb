@@ -1,0 +1,8 @@
+{
+  "backend": "fallback",
+  "samples": 20,
+  "exact_match_after_normalize": 0.0,
+  "char_accuracy": 0.0,
+  "avg_latency_ms": 0.018,
+  "empty_text_rate": 0.0
+}

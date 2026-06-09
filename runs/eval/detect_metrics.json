@@ -1,0 +1,21 @@
+{
+  "samples": 0,
+  "gt_boxes": 0,
+  "proxy_center_hit_score": 0.0,
+  "per_class_center_hit": {
+    "人": 0.0,
+    "汽车": 0.0,
+    "自行车": 0.0,
+    "手机": 0.0,
+    "水杯": 0.0,
+    "笔记本电脑": 0.0,
+    "台灯": 0.0,
+    "沙发": 0.0,
+    "狗": 0.0
+  },
+  "mean_confidence": 0.0,
+  "avg_latency_ms": 0.0,
+  "empty_prediction_rate": 0.0,
+  "invalid_label_rate": 0.0,
+  "error": "model missing: models\\detect\\best.pt"
+}

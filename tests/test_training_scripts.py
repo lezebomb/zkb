@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def run_script(*args: str) -> subprocess.CompletedProcess[str]:
     env = os.environ.copy()
     env["PYTHONPATH"] = str(ROOT / "src")
-    return subprocess.run([sys.executable, *args], cwd=ROOT, env=env, text=True, capture_output=True, timeout=60)
+    return subprocess.run([sys.executable, *args], cwd=ROOT, env=env, text=True, encoding="utf-8", errors="replace", capture_output=True, timeout=60)
 
 
 def test_verify_training_setup_runs_without_deps() -> None:
@@ -48,4 +48,3 @@ def test_training_scripts_dry_run() -> None:
         result = run_script(*command)
         assert result.returncode == 0, result.stderr + result.stdout
         assert "dry-run" in result.stdout.lower()
-

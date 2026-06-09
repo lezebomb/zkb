@@ -10,6 +10,8 @@ ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
+os.environ.setdefault("YOLO_CONFIG_DIR", str(ROOT / ".ultralytics"))
+(ROOT / ".ultralytics").mkdir(parents=True, exist_ok=True)
 
 from contest_agent.training.common import env_bool
 
@@ -70,4 +72,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

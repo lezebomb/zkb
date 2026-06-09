@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import logging
+import os
 from pathlib import Path
 from typing import Any
 
@@ -9,6 +10,9 @@ from contest_agent.inference.base import DetectorBackend
 from contest_agent.inference.fallback import FallbackDetectorBackend
 from contest_agent.postprocess.labels import get_legal_class_names, normalize_detect_label
 from contest_agent.utils import clamp
+
+
+os.environ.setdefault("YOLO_CONFIG_DIR", str(Path.cwd() / ".ultralytics"))
 
 
 class UltralyticsDetectorBackend(DetectorBackend):

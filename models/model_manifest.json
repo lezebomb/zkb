@@ -1,0 +1,17 @@
+{
+  "models": [
+    {
+      "model_type": "classify",
+      "path": "models/classify/classifier.pt",
+      "created_at": "2026-06-09T02:26:44+00:00",
+      "source_run": "models\\classify\\classifier.pt",
+      "eval_metrics_path": "runs\\eval\\classify_metrics.json",
+      "sha256": "f72db4bfdf71b79f8f16700a31857e4268b734e54a1b257afe96ffeb6c9caa52",
+      "size_bytes": 6235653,
+      "recommended_env": {
+        "CLASSIFY_BACKEND": "local",
+        "MODEL_CLASSIFY_PATH": "models/classify/classifier.pt"
+      }
+    }
+  ]
+}

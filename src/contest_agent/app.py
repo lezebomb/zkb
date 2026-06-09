@@ -46,6 +46,35 @@ def _ocr_model_dirs_exist(settings: Settings) -> bool:
     return all(path.exists() for path in required)
 
 
+def _file_size_mb(path: Path) -> float | None:
+    try:
+        if path.exists() and path.is_file():
+            return round(path.stat().st_size / (1024 * 1024), 4)
+    except OSError:
+        return None
+    return None
+
+
+def _manifest_sha256(settings: Settings, model_path: Path) -> str | None:
+    manifest_path = settings.model_detect_path.parents[1] / "model_manifest.json"
+    if not manifest_path.exists():
+        return None
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+    rel_candidates = {str(model_path), str(model_path.as_posix())}
+    try:
+        rel_candidates.add(str(model_path.resolve().relative_to(settings.model_detect_path.parents[1]).as_posix()))
+    except Exception:
+        pass
+    for item in manifest.get("models", []):
+        if isinstance(item, dict) and str(item.get("path")) in rel_candidates:
+            sha = item.get("sha256")
+            return str(sha) if sha else None
+    return None
+
+
 def _backend_status(settings: Settings) -> dict[str, Any]:
     classify_effective = "fallback"
     detect_effective = "fallback"
@@ -62,18 +91,28 @@ def _backend_status(settings: Settings) -> dict[str, Any]:
             "effective": classify_effective,
             "model_path": _display_path(settings, settings.model_classify_path),
             "model_exists": settings.model_classify_path.exists(),
+            "class_names_path": _display_path(settings, settings.model_classify_path.parent / "class_names.json"),
+            "class_names_exists": (settings.model_classify_path.parent / "class_names.json").exists(),
+            "model_size_mb": _file_size_mb(settings.model_classify_path),
         },
         "detect": {
             "configured": settings.detect_backend,
             "effective": detect_effective,
             "model_path": _display_path(settings, settings.model_detect_path),
             "model_exists": settings.model_detect_path.exists(),
+            "model_size_mb": _file_size_mb(settings.model_detect_path),
+            "manifest_sha256": _manifest_sha256(settings, settings.model_detect_path),
         },
         "ocr": {
             "configured": settings.ocr_backend,
             "effective": ocr_effective,
             "model_path": _display_path(settings, settings.model_ocr_path),
             "model_dirs_exist": _ocr_model_dirs_exist(settings),
+            "dirs": {
+                "det": settings.ocr_det_model_dir.exists(),
+                "rec": settings.ocr_rec_model_dir.exists(),
+                "cls": settings.ocr_cls_model_dir.exists(),
+            },
         },
     }
 

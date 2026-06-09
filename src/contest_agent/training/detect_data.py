@@ -44,13 +44,19 @@ def prepare_coco8(output: Path | str, allow_download: bool = False) -> Path:
     ensure_dir(out / "labels" / "val")
     write_text(out / "data.yaml", contest_data_yaml(out))
     note = [
-        "COCO8 contest smoke dataset placeholder.",
-        "If Ultralytics and network are available, run with --allow-download to let YOLO fetch coco8 during training.",
-        "Class names are remapped to contest Chinese labels.",
+        "COCO8 contest smoke dataset workspace.",
+        "With --allow-download, train_detect_yolo.py can use --data coco8.yaml and Ultralytics will fetch real COCO8.",
+        "This local data.yaml keeps the contest 9-class order for converted/custom data.",
         "台灯 is not covered by COCO and needs extra data or a second-stage strategy.",
     ]
     if allow_download:
-        note.append("Download was allowed, but this script keeps a local YOLO yaml placeholder to avoid implicit large downloads.")
+        try:
+            import ultralytics  # noqa: F401
+
+            note.append("Ultralytics is installed. Real smoke training may use --data coco8.yaml.")
+        except Exception as exc:
+            note.append(f"Ultralytics is not installed, so no COCO8 download was attempted: {exc}")
+            note.append("Install with: pip install -r requirements-detect.txt")
     write_text(out / "README.md", "\n".join(note) + "\n")
     return out / "data.yaml"
 
@@ -96,4 +102,3 @@ def prepare_custom(input_dir: Path | str, output: Path | str) -> Path:
     if not (out / "data.yaml").exists():
         write_text(out / "data.yaml", contest_data_yaml(out))
     return out / "data.yaml"
-
