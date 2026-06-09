@@ -1,0 +1,7 @@
+output: data/processed/ocr/synthetic
+count: 500
+seed: 42
+fields: [阀位, 压力, 温度, 流量, 电压, 电流]
+units: ['%', ℃, MPa, V, A]
+augmentations: [blur, rotate, noise, brightness]
+

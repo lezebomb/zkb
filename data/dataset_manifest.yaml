@@ -1,0 +1,111 @@
+datasets:
+  - name: 'COCO'
+    task: 'detect'
+    url: 'https://cocodataset.org/'
+    license_note: 'Public research dataset; review COCO terms before full download.'
+    size_note: 'Full train/val is large; do not download by default.'
+    download_method: 'Use Ultralytics or COCO tools only after ALLOW_DATASET_DOWNLOAD=true.'
+    project_use: 'Detect baseline and contest-class subset. 台灯 is not covered.'
+    classes_covered:
+      - '人'
+      - '汽车'
+      - '自行车'
+      - '手机'
+      - '水杯'
+      - '笔记本电脑'
+      - '沙发'
+      - '狗'
+    default_download: false
+    needs_manual_review: true
+  - name: 'COCO8'
+    task: 'detect'
+    url: 'https://docs.ultralytics.com/datasets/detect/coco8/'
+    license_note: 'Tiny sample derived from COCO; review upstream terms.'
+    size_note: 'Tiny smoke dataset.'
+    download_method: 'Ultralytics may fetch it when ALLOW_DATASET_DOWNLOAD=true or --allow-download.'
+    project_use: 'Smoke training and pipeline validation only.'
+    classes_covered:
+      - '人'
+      - '汽车'
+      - '自行车'
+    default_download: false
+    needs_manual_review: false
+  - name: 'Open Images'
+    task: 'detect'
+    url: 'https://storage.googleapis.com/openimages/web/index.html'
+    license_note: 'Mixed image licenses; must review labels and image license before use.'
+    size_note: 'Very large; use filtered subsets only.'
+    download_method: 'Candidate only; write a filtered downloader after license review.'
+    project_use: 'Potential long-tail supplement for 台灯.'
+    classes_covered:
+      - '台灯'
+      - '灯'
+      - '手机'
+      - '狗'
+      - '沙发'
+    default_download: false
+    needs_manual_review: true
+  - name: 'LVIS'
+    task: 'detect'
+    url: 'https://www.lvisdataset.org/'
+    license_note: 'Review LVIS and source image terms before use.'
+    size_note: 'Large annotations over COCO images.'
+    download_method: 'Candidate only; requires explicit dataset decision.'
+    project_use: 'Candidate long-tail labels, especially lamp-like categories.'
+    classes_covered:
+      - '台灯'
+      - '灯'
+      - '沙发'
+      - '杯子'
+    default_download: false
+    needs_manual_review: true
+  - name: 'Places365'
+    task: 'classify'
+    url: 'http://places2.csail.mit.edu/'
+    license_note: 'Research dataset; review terms before download or redistribution.'
+    size_note: 'Large; do not download by default.'
+    download_method: 'Manual preparation or explicit downloader only with ALLOW_DATASET_DOWNLOAD=true.'
+    project_use: 'Candidate scene classification source.'
+    classes_covered:
+      - '办公室'
+      - '公园'
+      - '街道'
+      - '商场'
+      - '厨房'
+      - '卧室'
+      - '图书馆'
+      - '体育馆'
+    default_download: false
+    needs_manual_review: true
+  - name: 'Synthetic OCR Meter Readings'
+    task: 'ocr'
+    url: 'local://scripts/generate_synthetic_ocr_dataset.py'
+    license_note: 'Generated locally by this project.'
+    size_note: 'Configurable; smoke count can be 5-500 images.'
+    download_method: 'Generate locally; no network required.'
+    project_use: 'OCR smoke data and fine-tuning preparation.'
+    classes_covered:
+      - '中文字段'
+      - '数字'
+      - '小数点'
+      - '%'
+      - '℃'
+      - 'MPa'
+      - 'V'
+      - 'A'
+    default_download: true
+    needs_manual_review: false
+  - name: 'PaddleOCR official datasets'
+    task: 'ocr'
+    url: 'https://github.com/PaddlePaddle/PaddleOCR/blob/main/doc/doc_en/dataset/overview_en.md'
+    license_note: 'Multiple datasets and licenses; review each source before use.'
+    size_note: 'Varies from small to very large.'
+    download_method: 'Candidate only; follow PaddleOCR docs after review.'
+    project_use: 'Possible OCR pretraining/fine-tuning data source.'
+    classes_covered:
+      - '中文'
+      - '英文'
+      - '数字'
+      - '符号'
+    default_download: false
+    needs_manual_review: true

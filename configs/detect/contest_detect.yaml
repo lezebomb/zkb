@@ -1,0 +1,14 @@
+path: data/processed/detect/contest
+train: images/train
+val: images/val
+names:
+  0: 人
+  1: 汽车
+  2: 自行车
+  3: 手机
+  4: 水杯
+  5: 笔记本电脑
+  6: 台灯
+  7: 沙发
+  8: 狗
+

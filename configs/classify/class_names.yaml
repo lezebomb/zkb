@@ -1,0 +1,19 @@
+class_names:
+  - 办公室
+  - 公园
+  - 街道
+  - 商场
+  - 厨房
+  - 卧室
+  - 图书馆
+  - 体育馆
+search_hints:
+  办公室: [office]
+  公园: [park]
+  街道: [street, urban street]
+  商场: [shopping mall, mall]
+  厨房: [kitchen]
+  卧室: [bedroom]
+  图书馆: [library]
+  体育馆: [gymnasium, gym, sports hall]
+

@@ -1,0 +1,8 @@
+data: data/processed/classify/contest8
+model: mobilenet_v3_small
+epochs: 1
+batch: 4
+imgsz: 224
+device: cpu
+output: models/classify/classifier.pt
+

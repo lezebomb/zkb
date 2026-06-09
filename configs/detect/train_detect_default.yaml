@@ -1,0 +1,10 @@
+model: models/detect/yolo11n.pt
+data: data/processed/detect/coco8_contest/data.yaml
+epochs: 1
+imgsz: 320
+batch: 2
+device: cpu
+project: runs/detect
+name: smoke
+export: models/detect/best.pt
+

@@ -1,0 +1,29 @@
+Global:
+  use_gpu: false
+  epoch_num: 1
+  save_model_dir: ./runs/ocr/rec
+  character_dict_path: null
+  max_text_length: 32
+  infer_mode: false
+  use_space_char: true
+Train:
+  dataset:
+    name: SimpleDataSet
+    data_dir: ./data/processed/ocr/synthetic
+    label_file_list:
+      - ./data/processed/ocr/synthetic/labels.txt
+  loader:
+    shuffle: true
+    batch_size_per_card: 8
+    drop_last: false
+Eval:
+  dataset:
+    name: SimpleDataSet
+    data_dir: ./data/processed/ocr/synthetic
+    label_file_list:
+      - ./data/processed/ocr/synthetic/labels.txt
+  loader:
+    shuffle: false
+    batch_size_per_card: 8
+    drop_last: false
+
